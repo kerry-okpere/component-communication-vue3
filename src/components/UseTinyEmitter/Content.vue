@@ -9,7 +9,7 @@ import { defineComponent, ref, reactive } from 'vue'
 import emitter from "../../eventBus";
 
 export default defineComponent({
-  setup() {
+  setup(props, { emit }) {
     const isEmitting = ref(false)
     const state = reactive({
       data: {
@@ -20,7 +20,8 @@ export default defineComponent({
     
     emitter.$on('save', () => {
       isEmitting.value = true
-      console.log('handle data transfer with tiny  emitter')
+      console.log('handle data transfer with tiny emitter')
+      emit('save', state.data)
       setTimeout(() => {
         isEmitting.value = false
         return state.data

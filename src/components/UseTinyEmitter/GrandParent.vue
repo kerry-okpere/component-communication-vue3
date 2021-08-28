@@ -1,11 +1,16 @@
 <script setup>
 import Parent from './Parent.vue'
 import Content from './Content.vue'
+import { ref } from 'vue'
+
+const endEmit = data => {
+  console.log('data has arrived through emitter', data)
+}
 </script>
 
 <template>
-  <Parent @save="event = 'save'">
-    <Content/>
+  <Parent>
+    <Content @save="endEmit"/>
   </Parent>
 </template>
 
